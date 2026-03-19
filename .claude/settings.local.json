@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm audit:*)",
+      "Bash(node -e \"const pkg = require\\('./package.json'\\); console.log\\('next:', pkg.dependencies?.next || pkg.devDependencies?.next\\); console.log\\('ai:', pkg.dependencies?.ai || pkg.devDependencies?.ai\\);\")",
+      "Bash(npm test:*)",
+      "Bash(node -e \"const jose = require\\('./node_modules/jose/package.json'\\); console.log\\('jose version:', jose.version\\);\" 2>&1)",
+      "Bash(node -e \"const jose = require\\('./node_modules/jose'\\); console.log\\(Object.keys\\(jose\\)\\);\" 2>&1)",
+      "Bash(node -e \"\nconst { SignJWT } = require\\('./node_modules/jose'\\);\nconst s = new SignJWT\\({userId: 'test', email: 'test@test.com'}\\);\nconsole.log\\(typeof s.sign\\);\n// Try signing\nconst key = new TextEncoder\\(\\).encode\\('development-secret-key'\\);\ns.setProtectedHeader\\({ alg: 'HS256' }\\).setExpirationTime\\('7d'\\).setIssuedAt\\(\\).sign\\(key\\).then\\(tok => console.log\\('OK:', tok.substring\\(0, 20\\)\\)\\).catch\\(e => console.log\\('Error:', e.message\\)\\);\n\" 2>&1)",
+      "Bash(npx vitest:*)",
+      "Bash(node -e \"const pkg = require\\('./package.json'\\); console.log\\(JSON.stringify\\(pkg.vitest || pkg['vitest'], null, 2\\)\\); console.log\\('scripts:', JSON.stringify\\(pkg.scripts, null, 2\\)\\);\")",
+      "Bash(open http://localhost:3000)"
+    ]
+  }
+}
